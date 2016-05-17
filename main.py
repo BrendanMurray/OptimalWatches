@@ -22,7 +22,7 @@ def render_template(handler, templatename, templatevalues={}):
 #this class renders the homepage
 class MainPageHandler(webapp2.RequestHandler):
     def get(self):
-        render_template(self, 'index.php')
+        render_template(self, 'index.html')
 
 ###############################################################################
 mappings = [
