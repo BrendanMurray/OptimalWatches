@@ -16,10 +16,12 @@ h4{
 }
 
 ul.products li {
-    width: 200px;
+    width: 250px;
     display: inline-block;
     vertical-align: top;
     *display: inline;
     *zoom: 1;
+    border: 1px solid #000;
+    list-style-type: none;
 }
 </style>
