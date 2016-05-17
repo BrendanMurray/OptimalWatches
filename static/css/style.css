@@ -1,0 +1,18 @@
+<style>
+h3 {
+    color:#000080;
+}
+
+h4{
+    color:#4169E1;
+}
+
+.bg{
+	background: url(../images/colorado.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+</style>
