@@ -16,9 +16,6 @@
      $(document).ready(function(){
          var wList =  {{list|safe}};
          for (var prop in wList){
-             console.log(wList[prop].ImageURL)
-             console.log(wList[prop].DisplayName)
-             console.log(wList[prop].Price)
              $('#watch-ul').append("<li><a href='http://www.amazon.com/dp/"+wList[prop].ItemId+"/'><img src='"+wList[prop].ImageURL+"' height=225px><h4>"+wList[prop].DisplayName+"</h4><p>$"+wList[prop].Price+"</p></a></li>");
          }
      });

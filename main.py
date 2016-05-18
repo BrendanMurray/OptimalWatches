@@ -26,7 +26,8 @@ def render_template(handler, templatename, templatevalues={}):
 #this class renders the homepage
 class MainPageHandler(webapp2.RequestHandler):
     def get(self):
-        # models.loadTextFile()
+        if (models.WatchListing.query().count() == 0):
+            models.loadTextFile()
         watchList = models.getWatchListing()
         page_params = {
             'list': watchList,
