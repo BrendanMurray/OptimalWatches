@@ -30,6 +30,7 @@ class MainPageHandler(webapp2.RequestHandler):
         product = amazon.lookup(ItemId='B000KG93BQ')
         logging.warning(product.title)
         logging.warning(product.price_and_currency[0])
+        models.loadTextFile()
         render_template(self, 'index.html')
 
 ###############################################################################
