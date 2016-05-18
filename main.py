@@ -26,12 +26,12 @@ def render_template(handler, templatename, templatevalues={}):
 #this class renders the homepage
 class MainPageHandler(webapp2.RequestHandler):
     def get(self):
-        amazon = AmazonAPI()
-        product = amazon.lookup(ItemId='B000KG93BQ')
-        logging.warning(product.title)
-        logging.warning(product.price_and_currency[0])
-        models.loadTextFile()
-        render_template(self, 'index.html')
+        # models.loadTextFile()
+        watchList = models.getWatchListing()
+        page_params = {
+            'list': watchList,
+        }
+        render_template(self, 'index.html',page_params)
 
 ###############################################################################
 mappings = [

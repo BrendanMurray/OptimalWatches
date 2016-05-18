@@ -6,96 +6,23 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
  </head>
 	 <body class="bg">
-	 	<div class="container text-center">
+	 	<div class="container text-center" id='watchdiv'>
 	 		<h2 style='text-align:center; vertical-align: middle; color:black;'>Watches to Watch</h2>
-            <ul class="products">
-                <li>
-                    <a href="http://www.amazon.com/dp/B002SSUQFG">
-                        <img src="/static/images/Seiko/SNK809.jpg" width=225px>
-                        <h4>Seiko SNK809</h4>
-                        <p>$58.65</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="/static/images/Seiko/SNZF15J.jpg" width=225px>
-                        <h4>Seiko SNZF15J</h4>
-                        <p>$225.00</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.amazon.com/dp/B000KG93BQ/">
-                        <img src="/static/images/Seiko/SARB017.jpg" width=225px>
-                        <h4>Seiko SARB017</h4>
-                        <p>$375.00</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.amazon.com/dp/B000B5MI3Q/">
-                        <img src="/static/images/Seiko/SKX007K.jpg" width=225px>
-                        <h4>Seiko SKX007K</h4>
-                        <p>$216.80</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.amazon.com/dp/B007554WYI/">
-                        <img src="/static/images/Seiko/SSB025.jpg" width=225px>
-                        <h4>Seiko SSB025</h4>
-                        <p>$138.00</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.amazon.com/dp/B001AE9XRQ/">
-                        <img src="/static/images/Seiko/SARB033.jpg" height=225px>
-                        <h4>Seiko SARB033</h4>
-                        <p>$343.00</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.amazon.com/dp/B0038OLUMM/">
-                        <img src="/static/images/Seiko/SARB065.jpg" height=225px>
-                        <h4>Seiko SARB065</h4>
-                        <p>$405.00</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.amazon.com/dp/B01C4P60J8/">
-                        <img src="/static/images/Casio/MDV106-1A.jpg" height=225px>
-                        <h4>Casio MDV106-1A</h4>
-                        <p>$40.99</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.amazon.com/dp/B00FS43D7A/">
-                        <img src="/static/images/Orient/FER24004B0.jpg" height=225px>
-                        <h4>Orient FER24004B0</h4>
-                        <p>$155.95</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.amazon.com/dp/B01CHT93X6/">
-                        <img src="/static/images/Orient/FER2400MW0.jpg" height=225px>
-                        <h4>Orient FER2400MW0</h4>
-                        <p>$129.00</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.amazon.com/dp/B00QM178B0/">
-                        <img src="/static/images/Orient/FER2400CN.jpg" height=225px>
-                        <h4>Orient FER2400CN</h4>
-                        <p>$139.00</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.amazon.com/dp/B011MU8U9E/">
-                        <img src="/static/images/Orient/ET0T002S.jpg" height=225px>
-                        <h4>Orient ET0T002S</h4>
-                        <p>$399.99</p>
-                    </a>
-                </li>
+            <ul class="products" id='watch-ul'>
             </ul>
 	 	</div>
 	 </body>
+     <script>
+     $(document).ready(function(){
+         var wList =  {{list|safe}};
+         for (var prop in wList){
+             console.log(wList[prop].ImageURL)
+             console.log(wList[prop].DisplayName)
+             console.log(wList[prop].Price)
+             $('#watch-ul').append("<li><a href='http://www.amazon.com/dp/"+wList[prop].ItemId+"/'><img src='"+wList[prop].ImageURL+"' height=225px><h4>"+wList[prop].DisplayName+"</h4><p>$"+wList[prop].Price+"</p></a></li>");
+         }
+     });
+     </script>
  </html>
 
 {% endblock %}
