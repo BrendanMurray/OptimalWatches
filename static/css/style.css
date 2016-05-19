@@ -7,6 +7,11 @@ h4{
     color:#4169E1;
 }
 
+p{
+    color:#000000;
+    font-size=20px;
+}
+
 .bg{
   -webkit-background-size: cover;
   -moz-background-size: cover;
