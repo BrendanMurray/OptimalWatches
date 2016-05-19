@@ -73,10 +73,18 @@ def loadTextFile():
             logging.warning(list[x][2])
             product = amazon.lookup(ItemId=list[x][2])
             logging.warning(product.price_and_currency[0])
-            createWatchListing(
-            list[x][0],
-            list[x][0] + ' ' + list[x][1],
-            list[x][1],
-            list[x][2],
-            product.price_and_currency[0])
+            if (list[x][0] == 'Frederique Constant'):
+                createWatchListing(
+                list[x][0],
+                list[x][1],
+                list[x][1],
+                list[x][2],
+                product.price_and_currency[0])
+            else:
+                createWatchListing(
+                list[x][0],
+                list[x][0] + ' ' + list[x][1],
+                list[x][1],
+                list[x][2],
+                product.price_and_currency[0])
             time.sleep(1) #amazon only allows a single API per second...
