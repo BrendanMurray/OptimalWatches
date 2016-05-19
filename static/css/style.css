@@ -42,4 +42,8 @@ ul.products li {
     margin: 4px 2px;
     cursor: pointer;
 }
+
+.button:disabled {
+    background-color: #404040;
+}
 </style>
