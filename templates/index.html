@@ -16,7 +16,14 @@
      $(document).ready(function(){
          var wList =  {{list|safe}};
          for (var prop in wList){
-             $('#watch-ul').append("<li></br><img src='"+wList[prop].ImageURL+"' height=225px><h4><i>"+wList[prop].DisplayName+"</i></h4><p><a href='http://www.amazon.com/dp/"+wList[prop].ItemId+"/'><i class='icon-shopping-cart icon-3x' style='color:#ff9900;'></i></a><span style='padding-left:3em'></span>     <span style='color:#00a100; font-size:125%'>$"+wList[prop].Price+"</span><span style='padding-right:3em'></span><a href='http://camelcamelcamel.com/product/"+wList[prop].ItemId+"/'><i class='icon-bar-chart icon-3x' style='color:#146eb4;'></i></a></p></li>");
+             var search = "<span style='padding-left:16em'><a href='https://www.reddit.com/r/Watches/search?q="+wList[prop].ReferenceNum+"&restrict_sr=on&sort=relevance&t=all'><i class='icon-search icon-large'></i></a></span></br>";
+             var img = "<img src='"+wList[prop].ImageURL+"' height=225px>";
+             var dName = "<h4></br>"+wList[prop].DisplayName+"</h4>";
+             var price = "<p><span style='color:#00a100; font-size:125%; font-weight: bold;'>$"+wList[prop].Price+"</span></p>";
+             var cart = "<p><a href='http://www.amazon.com/dp/"+wList[prop].ItemId+"/'><i class='icon-shopping-cart icon-3x' style='color:#ff9900;'></i></a>";
+             var padding = "<span style='padding-left:5em'></span><span style='padding-right:5em'></span>";
+             var chart = "<a href='http://camelcamelcamel.com/product/"+wList[prop].ItemId+"/'><i class='icon-bar-chart icon-3x' style='color:#146eb4;'></i></a></p>";
+             $('#watch-ul').append("<li>"+search+img+dName+price+cart+padding+chart+"</li>");
          }
      });
      </script>
