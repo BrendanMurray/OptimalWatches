@@ -16,14 +16,20 @@
      $(document).ready(function(){
          var wList =  {{list|safe}};
          for (var prop in wList){
-             var search = "<span style='padding-left:16em'><a href='https://www.reddit.com/r/Watches/search?q="+wList[prop].ReferenceNum+"&restrict_sr=on&sort=relevance&t=all'><i class='icon-search icon-large'></i></a></span></br>";
+             var search = "<span style='padding-left:16em'><a href='https://www.reddit.com/r/Watches/search?q="+wList[prop].ReferenceNum+"&restrict_sr=on&sort=relevance&t=all'><i class='icon-search icon-large' style='color:grey;'></i></a></span></br>";
              var img = "<img src='"+wList[prop].ImageURL+"' height=225px>";
              var dName = "<h4></br>"+wList[prop].DisplayName+"</h4>";
+             var noPrice = "<p><span style='color:#ad2b2b; font-size:125%; font-weight: bold;'>Currently unavailable</span></p>";
              var price = "<p><span style='color:#00a100; font-size:125%; font-weight: bold;'>$"+wList[prop].Price+"</span></p>";
              var cart = "<p><a href='http://www.amazon.com/dp/"+wList[prop].ItemId+"/'><i class='icon-shopping-cart icon-3x' style='color:#ff9900;'></i></a>";
              var padding = "<span style='padding-left:5em'></span><span style='padding-right:5em'></span>";
              var chart = "<a href='http://camelcamelcamel.com/product/"+wList[prop].ItemId+"/'><i class='icon-bar-chart icon-3x' style='color:#146eb4;'></i></a></p>";
-             $('#watch-ul').append("<li>"+search+img+dName+price+cart+padding+chart+"</li>");
+             if (wList[prop].Price){
+                 $('#watch-ul').append("<li>"+search+img+dName+price+cart+padding+chart+"</li>");
+             }
+             else{
+                 $('#watch-ul').append("<li>"+search+img+dName+noPrice+cart+padding+chart+"</li>");
+             }
          }
      });
      </script>
