@@ -45,16 +45,39 @@ def getWatchListing():
         watchList.append(temp)
     return json.dumps(watchList)                  #return json representation of the ordered query
 
+#queries the NBD for all Watch Listings in datastore
+def getWatchListingByName(company):
+    query = WatchListing.query(WatchListing.Company == company)
+    watchList = []
+    list = query.fetch()
+    for item in list:
+        temp = item.to_dict()   #strip off date property which is not easily parseable by json
+        watchList.append(temp)
+    return json.dumps(watchList)                  #return json representation of the ordered query
+
 #queries the NBD for all Watch Listings in datastore, sorted by ascending or descending price
-def getWatchListingsByPrice(bool):
-    if (bool == False):
-        query = WatchListing.query().order(-WatchListing.price)
+def getWatchListingsByPrice(order):
+    if (order == 'down'):
+        query = WatchListing.query().order(WatchListing.Price)
     else:
-        query = WatchListing.query().order(WatchListing.price)
+        query = WatchListing.query().order(-WatchListing.Price)
     watchList = []
     list = query.fetch()
     for item in list:
         temp = item.to_dict(exclude=['date'])   #strip off date property which is not easily parseable by json
+        watchList.append(temp)
+    return json.dumps(watchList)                  #return json representation of the ordered query
+
+#queries the NBD for all Watch Listings in datastore
+def getWatchListingByNameAndPrice(company,order):
+    if (order == 'down'):
+        query = WatchListing.query(WatchListing.Company == company).order(WatchListing.Price)
+    else:
+        query = WatchListing.query(WatchListing.Company == company).order(-WatchListing.Price)
+    watchList = []
+    list = query.fetch()
+    for item in list:
+        temp = item.to_dict()   #strip off date property which is not easily parseable by json
         watchList.append(temp)
     return json.dumps(watchList)                  #return json representation of the ordered query
 

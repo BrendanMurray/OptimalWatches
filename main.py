@@ -34,8 +34,29 @@ class MainPageHandler(webapp2.RequestHandler):
         }
         render_template(self, 'index.html',page_params)
 
+class getNewWatchList(webapp2.RequestHandler):
+    def post(self):
+        self.response.headers.add_header('Access-Control-Allow-Origin', '*')
+        self.response.headers['Content-Type'] = 'application/json'
+        data = json.loads(self.request.body)
+        company = data['company']
+        logging.warning(company)
+        direction = data['direction']
+
+        if (direction is None and company == 'All'):
+            jAson = models.getWatchListing()
+        elif (direction is None and company != 'All'):
+            jAson = models.getWatchListingByName(company)
+        elif(company is None or company == 'All'):
+            jAson = models.getWatchListingsByPrice(direction)
+        else:
+            jAson = models.getWatchListingByNameAndPrice(company,direction)
+
+        self.response.out.write(json.dumps(jAson))
+
 ###############################################################################
 mappings = [
   ('/', MainPageHandler),
+  ('/getNewWatchList', getNewWatchList),
 ]
 app = webapp2.WSGIApplication(mappings, debug=True)

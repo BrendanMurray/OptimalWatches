@@ -5,14 +5,36 @@
      <title>Home</title>
      <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
  </head>
-	 <body class="bg">
-	 	<div class="container text-center" id='watchdiv'>
-	 		<h2 style='text-align:center; vertical-align: middle; color:black;'>Watches to Watch</h2>
+     <div class="container text-center" id='watchdiv'>
+    	 <body class="bg">
+            <span style='padding-left:3em'>
+            <button class="button" id="button_All" value="All">All</button>
+            <button class="button" id="button_Seiko" value="Seiko">Seiko</button>
+            <button class="button" id="button_Casio" value="Casio">Casio</button>
+            <button class="button" id="button_Orient" value="Orient">Orient</button>
+            <button class="button" id="button_Timex" value="Timex">Timex</button>
+            <button class="button" id="button_Tissot" value="Tissot">Tissot</button>
+            </br><span style='padding-left:3em'>
+            <button class="button" id="button_FC" value="Frederique Constant">Frederique Constant</button>
+            <button class="button" id="button_Hamilton" value="Hamilton">Hamilton</button>
+            <button class="button" id="button_Zeppelin" value="Zeppelin">Zeppelin</button>
+            </br><span style='padding-left:3em'>
+            <button class="button" id="button_Junkers" value="Junkers">Junkers</button>
+            <button class="button" id="button_Seagull" value="Seagull">Seagull</button>
+            <button class="button" id="button_Tissot" value="Tissot">Tissot</button>
+        </br></br>
+        <span style='padding-left:3em'></span>
+            <button class="button" id="button_price_up" value="up"><i class='icon-long-arrow-up icon-large' style='color:white;'></i></button>
+            <button class="button" id="button_price_down" value="down"><i class='icon-long-arrow-down icon-large' style='color:white;'></i></button>
+        </br></br>
             <ul class="products" id='watch-ul'>
             </ul>
 	 	</div>
 	 </body>
      <script>
+     var direction = null;
+     var currCompany = 'All';
+
      $(document).ready(function(){
          var wList =  {{list|safe}};
          for (var prop in wList){
@@ -32,6 +54,45 @@
              }
          }
      });
+    $("button").click(function(e) {
+        var buttonval = $(this).val();
+
+        if (buttonval == 'up' || buttonval == 'down'){
+            direction=buttonval;
+
+        }
+        else{
+            currCompany = buttonval;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/getNewWatchList",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({"company":currCompany, "direction":direction}),
+            success: function(text){
+                $("ul").empty();
+                var data = JSON.parse(text);
+                $.each(data, function(id,watch) {
+                     var search = "<span style='padding-left:16em'><a href='https://www.reddit.com/r/Watches/search?q="+watch.ReferenceNum+"&restrict_sr=on&sort=relevance&t=all'><i class='icon-search icon-large' style='color:grey;'></i></a></span></br>";
+                     var img = "<img src='"+watch.ImageURL+"' height=225px>";
+                     var dName = "<h4></br>"+watch.DisplayName+"</h4>";
+                     var noPrice = "<p><span style='color:#ad2b2b; font-size:125%; font-weight: bold;'>Currently unavailable</span></p>";
+                     var price = "<p><span style='color:#00a100; font-size:125%; font-weight: bold;'>$"+watch.Price+"</span></p>";
+                     var cart = "<p><a href='http://www.amazon.com/dp/"+watch.ItemId+"/'><i class='icon-shopping-cart icon-3x' style='color:#ff9900;'></i></a>";
+                     var padding = "<span style='padding-left:5em'></span><span style='padding-right:5em'></span>";
+                     var chart = "<a href='http://camelcamelcamel.com/product/"+watch.ItemId+"/'><i class='icon-bar-chart icon-3x' style='color:#146eb4;'></i></a></p>";
+                     if (watch.Price){
+                         $('#watch-ul').append("<li>"+search+img+dName+price+cart+padding+chart+"</li>");
+                     }
+                     else{
+                         $('#watch-ul').append("<li>"+search+img+dName+noPrice+cart+padding+chart+"</li>");
+                     }
+                });
+            },
+        });
+    });
+
      </script>
  </html>
 
