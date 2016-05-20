@@ -5,30 +5,31 @@
      <title>Home</title>
      <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
  </head>
-     <div class="container text-center" id='watchdiv'>
+     <div class="container-fluid text-center" id='watchdiv'>
     	 <body class="bg">
-            <span style='padding-left:3em'>
             <button class="button" id="button_All" value="All" disabled>All</button>
             <button class="button" id="button_Seiko" value="Seiko">Seiko</button>
             <button class="button" id="button_Casio" value="Casio">Casio</button>
             <button class="button" id="button_Orient" value="Orient">Orient</button>
             <button class="button" id="button_Timex" value="Timex">Timex</button>
             <button class="button" id="button_Tissot" value="Tissot">Tissot</button>
-            </br><span style='padding-left:3em'>
             <button class="button" id="button_FC" value="Frederique Constant">Frederique Constant</button>
             <button class="button" id="button_Hamilton" value="Hamilton">Hamilton</button>
             <button class="button" id="button_Zeppelin" value="Zeppelin">Zeppelin</button>
-            </br><span style='padding-left:3em'>
             <button class="button" id="button_Junkers" value="Junkers">Junkers</button>
             <button class="button" id="button_Seagull" value="Seagull">Seagull</button>
             <button class="button" id="button_Tissot" value="Tissot">Tissot</button>
-        </br></br>
-        <span style='padding-left:3em'></span>
-            <button class="button" id="button_price_up" value="up"><i class='icon-long-arrow-up icon-large' style='color:white;'></i></button>
-            <button class="button" id="button_price_down" value="down"><i class='icon-long-arrow-down icon-large' style='color:white;'></i></button>
-        </br></br>
-            <ul class="products" id='watch-ul'>
-            </ul>
+            <hr>
+            <div class="container-fluid text-center">
+                <button class="button" id="button_price_down" value="down" style="float:right;"><i class='icon-long-arrow-down icon-large' style='color:white;'></i></button>
+                <button class="button" id="button_price_up" value="up" style="float:right;"><i class='icon-long-arrow-up icon-large' style='color:white;'></i></button>
+                <button class="button" id="button_sort_by" style='color:white; float:right;' disabled>Sort By Price:</button>
+            </div>
+            </br>
+            <div class="container-fluid text-center" style="margin-left:-5%;">
+                <ul class="products" id='watch-ul'>
+                </ul>
+            </div>
 	 	</div>
 	 </body>
      <script>
@@ -63,6 +64,7 @@
         else{
             currCompany = buttonval;
             $("button").prop("disabled",false);
+            $("#button_sort_by").prop("disabled",true);
         }
         $(this).prop("disabled",true);
 
