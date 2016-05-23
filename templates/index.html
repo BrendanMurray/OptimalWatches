@@ -18,7 +18,6 @@
             <button class="button" id="button_Zeppelin" value="Zeppelin">Zeppelin</button>
             <button class="button" id="button_Junkers" value="Junkers">Junkers</button>
             <button class="button" id="button_Seagull" value="Seagull">Seagull</button>
-            <button class="button" id="button_Tissot" value="Tissot">Tissot</button>
             <hr>
             <div class="container-fluid text-center">
                 <button class="button" id="button_price_down" value="down" style="float:right;"><i class='icon-long-arrow-down icon-large' style='color:white;'></i></button>
@@ -39,12 +38,13 @@
      $(document).ready(function(){
          var wList =  {{list|safe}};
          for (var prop in wList){
+             var reflink = "?tag=rwatches-20";
              var search = "<span style='padding-left:16em'><a href='https://www.reddit.com/r/Watches/search?q="+wList[prop].ReferenceNum+"&restrict_sr=on&sort=relevance&t=all'><i class='icon-search icon-large' style='color:grey;'></i></a></span></br>";
              var img = "<img src='"+wList[prop].ImageURL+"' height=225px>";
              var dName = "<h4></br>"+wList[prop].DisplayName+"</h4>";
              var noPrice = "<p><span style='color:#ad2b2b; font-size:125%; font-weight: bold;'>Currently unavailable</span></p>";
              var price = "<p><span style='color:#00a100; font-size:125%; font-weight: bold;'>$"+wList[prop].Price+"</span></p>";
-             var cart = "<p><a href='http://www.amazon.com/dp/"+wList[prop].ItemId+"/'><i class='icon-shopping-cart icon-3x' style='color:#ff9900;'></i></a>";
+             var cart = "<p><a href='http://www.amazon.com/dp/"+wList[prop].ItemId+"/"+reflink+"'><i class='icon-shopping-cart icon-3x' style='color:#ff9900;'></i></a>";
              var padding = "<span style='padding-left:5em'></span><span style='padding-right:5em'></span>";
              var chart = "<a href='http://camelcamelcamel.com/product/"+wList[prop].ItemId+"/'><i class='icon-bar-chart icon-3x' style='color:#146eb4;'></i></a></p>";
              if (wList[prop].Price){
@@ -86,12 +86,13 @@
                 $("ul").empty();
                 var data = JSON.parse(text);
                 $.each(data, function(id,watch) {
+                     var reflink = "?tag=rwatches-20";
                      var search = "<span style='padding-left:16em'><a href='https://www.reddit.com/r/Watches/search?q="+watch.ReferenceNum+"&restrict_sr=on&sort=relevance&t=all'><i class='icon-search icon-large' style='color:grey;'></i></a></span></br>";
                      var img = "<img src='"+watch.ImageURL+"' height=225px>";
                      var dName = "<h4></br>"+watch.DisplayName+"</h4>";
                      var noPrice = "<p><span style='color:#ad2b2b; font-size:125%; font-weight: bold;'>Currently unavailable</span></p>";
                      var price = "<p><span style='color:#00a100; font-size:125%; font-weight: bold;'>$"+watch.Price+"</span></p>";
-                     var cart = "<p><a href='http://www.amazon.com/dp/"+watch.ItemId+"/'><i class='icon-shopping-cart icon-3x' style='color:#ff9900;'></i></a>";
+                     var cart = "<p><a href='http://www.amazon.com/dp/"+watch.ItemId+"/'"+reflink+"><i class='icon-shopping-cart icon-3x' style='color:#ff9900;'></i></a>";
                      var padding = "<span style='padding-left:5em'></span><span style='padding-right:5em'></span>";
                      var chart = "<a href='http://camelcamelcamel.com/product/"+watch.ItemId+"/'><i class='icon-bar-chart icon-3x' style='color:#146eb4;'></i></a></p>";
                      if (watch.Price){
