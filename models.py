@@ -111,3 +111,8 @@ def loadTextFile():
                 list[x][2],
                 product.price_and_currency[0])
             time.sleep(1) #amazon only allows a single API per second...
+
+#return: (list) of watches
+def get_db_watches():
+    query = WatchListing.query()
+    return query.fetch()

@@ -1,0 +1,4 @@
+cron:
+- description: update watch price with Amazon API
+  url: /tasks/update_prices
+  schedule: every 15 mins
