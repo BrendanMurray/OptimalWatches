@@ -34,6 +34,12 @@ class MainPageHandler(webapp2.RequestHandler):
         }
         render_template(self, 'index.html',page_params)
 
+#this class renders the about page
+class AboutPageHandler(webapp2.RequestHandler):
+    def get(self):
+
+        render_template(self, 'about.html')
+
 class getNewWatchList(webapp2.RequestHandler):
     def post(self):
         self.response.headers.add_header('Access-Control-Allow-Origin', '*')
@@ -58,5 +64,6 @@ class getNewWatchList(webapp2.RequestHandler):
 mappings = [
   ('/', MainPageHandler),
   ('/getNewWatchList', getNewWatchList),
+  ('/About',AboutPageHandler)
 ]
 app = webapp2.WSGIApplication(mappings, debug=True)
